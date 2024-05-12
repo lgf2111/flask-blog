@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% from "_macros.html" import render_field_with_errors, render_field, render_form_errors, render_field_errors %}
+
+{% block content %}
+<form action="{{ url_for('views.create_blog') }}" class="border p-5 rounded needs-validation d-flex flex-column gap-2"
+  method="post" name="create_blog_form">
+  <h1>{{ _fsdomain('Create Blog') }}</h1>
+  {{ create_blog_form.hidden_tag }}
+  {{ render_form_errors(create_blog_form) }}
+  {{ render_field_with_errors(create_blog_form.title) }}
+  {{ render_field_with_errors(create_blog_form.subtitle) }}
+  {{ render_field_with_errors(create_blog_form.content) }}
+  {{ render_field_errors(create_blog_form.csrf_token) }}
+  {{ render_field(create_blog_form.submit) }}
+</form>
+{% endblock content %}
